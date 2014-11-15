@@ -1,5 +1,5 @@
-#ifndef _SPARKCARBON
-#define _SPARKCARBON
+#ifndef _CARBONLIBRARY
+#define _CARBONLIBRARY
 
 #include "application.h"
 

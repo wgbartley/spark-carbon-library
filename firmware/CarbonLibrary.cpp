@@ -1,4 +1,4 @@
-#include "main.h"
+#include "CarbonLibrary.h"
 
 SparkCarbon::SparkCarbon() {
     _carbonClient = NULL;

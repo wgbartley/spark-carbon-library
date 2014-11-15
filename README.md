@@ -29,4 +29,4 @@ How to Use
 Links
 -----
 
- - [Graphite/Carbon](http://graphite.wikidot.com/)
+ - [Graphite/Carbon](http://graphite.readthedocs.org/)
