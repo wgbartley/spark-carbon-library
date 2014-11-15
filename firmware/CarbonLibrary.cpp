@@ -73,8 +73,8 @@ bool SparkCarbon::sendData(String carbonMetric, String carbonValue, uint32_t car
         _carbonClient->print(carbonTimestamp);
         _carbonClient->println("");
         delay(10);
-        //_carbonClient->flush();
         _carbonClient->stop();
+        _carbonClient->flush();
         
         return true;
     } else
@@ -92,8 +92,8 @@ bool SparkCarbon::sendData(String carbonMetric, uint32_t carbonValue, uint32_t c
         _carbonClient->print(carbonTimestamp);
         _carbonClient->println("");
         delay(10);
-        //_carbonClient->flush();
         _carbonClient->stop();
+        _carbonClient->flush();
         
         return true;
     } else
