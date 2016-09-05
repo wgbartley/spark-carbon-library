@@ -1,4 +1,4 @@
-#include "CarbonLibrary-WifiFork.h"
+#include "CarbonLibrary.h"
 
 SparkCarbon::SparkCarbon() {
     _carbonClient = NULL;
@@ -31,19 +31,14 @@ bool SparkCarbon::begin(TCPClient * carbonClient, const char *carbonServer, uint
     _carbonPort = carbonPort;
 
     // Resolve DNS hostname
-    // Adapted from: https://github.com/spark/core-firmware/blob/master/src/spark_wiring_tcpclient.cpp#L47-L63
-    uint32_t ip_addr = 0;
-    _carbonServer = WiFi.resolve((char*)carbonServer);
-    return true;
-    // if(gethostbyname((char*)carbonServer, strlen(carbonServer), &ip_addr) > 0) {
-    //     IPAddress remote_addr(BYTE_N(ip_addr, 3), BYTE_N(ip_addr, 2), BYTE_N(ip_addr, 1), BYTE_N(ip_addr, 0));
-    //     _carbonServer = remote_addr;
-    //
-    //     return true;
-    // } else
-    //     return false;
-
-
+    IPAddress remote_addr = Wifi.resolve((char*)carbonServer);
+    if(remote_addr)
+    {
+      _carbonServer = remote_addr;
+      return true;
+    }
+    else
+      return false;
 }
 
 
@@ -53,17 +48,14 @@ bool SparkCarbon::begin(TCPClient * carbonClient, const char *carbonServer) {
     _carbonPort = 2003;
 
     // Resolve DNS hostname
-    // Adapted from: https://github.com/spark/core-firmware/blob/master/src/spark_wiring_tcpclient.cpp#L47-L63
-    uint32_t ip_addr = 0;
-    _carbonServer = WiFi.resolve((char*)carbonServer);
-    return true;
-    // if(gethostbyname((char*)carbonServer, strlen(carbonServer), &ip_addr) > 0) {
-    //     IPAddress remote_addr(BYTE_N(ip_addr, 3), BYTE_N(ip_addr, 2), BYTE_N(ip_addr, 1), BYTE_N(ip_addr, 0));
-    //     _carbonServer = remote_addr;
-    //
-    //     return true;
-    // } else
-    //     return false;
+    IPAddress remote_addr = Wifi.resolve((char*)carbonServer);
+    if(remote_addr)
+    {
+      _carbonServer = remote_addr;
+      return true;
+    }
+    else
+      return false;
 }
 
 
@@ -80,12 +72,9 @@ bool SparkCarbon::sendData(String carbonMetric, String carbonValue, uint32_t car
         _carbonClient->stop();
         _carbonClient->flush();
 
-        Particle.publish("DEBUG", "Data Sent");
         return true;
-    } else{
-        Particle.publish("DEBUG", "Data Failed to send");
+    } else
         return false;
-      }
 }
 
 
@@ -102,11 +91,7 @@ bool SparkCarbon::sendData(String carbonMetric, uint32_t carbonValue, uint32_t c
         _carbonClient->stop();
         _carbonClient->flush();
 
-        Particle.publish("DEBUG", "Data Sent");
         return true;
     } else
-    {
-      Particle.publish("DEBUG", "Data Failed to send");
         return false;
-      }
 }
