@@ -80,10 +80,10 @@ bool SparkCarbon::sendData(String carbonMetric, String carbonValue, uint32_t car
         _carbonClient->stop();
         _carbonClient->flush();
 
-        Photon.publish("DEBUG", "Data Sent");
+        Particle.publish("DEBUG", "Data Sent");
         return true;
     } else{
-        Photon.publish("DEBUG", "Data Failed to send");
+        Particle.publish("DEBUG", "Data Failed to send");
         return false;
       }
 }
@@ -102,11 +102,11 @@ bool SparkCarbon::sendData(String carbonMetric, uint32_t carbonValue, uint32_t c
         _carbonClient->stop();
         _carbonClient->flush();
 
-        Photon.publish("DEBUG", "Data Sent");
+        Particle.publish("DEBUG", "Data Sent");
         return true;
     } else
     {
-      Photon.publish("DEBUG", "Data Failed to send");
+      Particle.publish("DEBUG", "Data Failed to send");
         return false;
       }
 }
