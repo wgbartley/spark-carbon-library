@@ -10,7 +10,6 @@ bool SparkCarbon::begin(TCPClient * carbonClient, IPAddress carbonServer, uint16
     _carbonClient = carbonClient;
     _carbonServer = carbonServer;
     _carbonPort = carbonPort;
-
     return true;
 }
 
@@ -20,7 +19,6 @@ bool SparkCarbon::begin(TCPClient * carbonClient, IPAddress carbonServer) {
     _carbonClient = carbonClient;
     _carbonServer = carbonServer;
     _carbonPort = 2003;
-
     return true;
 }
 
@@ -29,7 +27,6 @@ bool SparkCarbon::begin(TCPClient * carbonClient, IPAddress carbonServer) {
 bool SparkCarbon::begin(TCPClient * carbonClient, const char *carbonServer, uint16_t carbonPort) {
     _carbonClient = carbonClient;
     _carbonPort = carbonPort;
-
     // Resolve DNS hostname
     IPAddress remote_addr = Wifi.resolve((char*)carbonServer);
     if(remote_addr)
@@ -46,7 +43,6 @@ bool SparkCarbon::begin(TCPClient * carbonClient, const char *carbonServer, uint
 bool SparkCarbon::begin(TCPClient * carbonClient, const char *carbonServer) {
     _carbonClient = carbonClient;
     _carbonPort = 2003;
-
     // Resolve DNS hostname
     IPAddress remote_addr = Wifi.resolve((char*)carbonServer);
     if(remote_addr)
@@ -71,7 +67,6 @@ bool SparkCarbon::sendData(String carbonMetric, String carbonValue, uint32_t car
         delay(10);
         _carbonClient->stop();
         _carbonClient->flush();
-
         return true;
     } else
         return false;
@@ -90,7 +85,6 @@ bool SparkCarbon::sendData(String carbonMetric, uint32_t carbonValue, uint32_t c
         delay(10);
         _carbonClient->stop();
         _carbonClient->flush();
-
         return true;
     } else
         return false;
