@@ -90,7 +90,7 @@ bool SparkCarbon::sendData(String carbonMetric, uint32_t carbonValue, uint32_t c
         delay(10);
         _carbonClient->stop();
         _carbonClient->flush();
-
+        
         return true;
     } else
         return false;
