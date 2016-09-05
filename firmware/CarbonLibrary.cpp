@@ -31,7 +31,7 @@ bool SparkCarbon::begin(TCPClient * carbonClient, const char *carbonServer, uint
     _carbonPort = carbonPort;
 
     // Resolve DNS hostname
-    IPAddress remote_addr = Wifi.resolve((char*)carbonServer);
+    IPAddress remote_addr = WiFi.resolve((char*)carbonServer);
     if(remote_addr)
     {
       _carbonServer = remote_addr;
@@ -48,7 +48,7 @@ bool SparkCarbon::begin(TCPClient * carbonClient, const char *carbonServer) {
     _carbonPort = 2003;
 
     // Resolve DNS hostname
-    IPAddress remote_addr = Wifi.resolve((char*)carbonServer);
+    IPAddress remote_addr = WiFi.resolve((char*)carbonServer);
     if(remote_addr)
     {
       _carbonServer = remote_addr;
@@ -90,7 +90,7 @@ bool SparkCarbon::sendData(String carbonMetric, uint32_t carbonValue, uint32_t c
         delay(10);
         _carbonClient->stop();
         _carbonClient->flush();
-        
+
         return true;
     } else
         return false;
