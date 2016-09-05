@@ -55,13 +55,15 @@ bool SparkCarbon::begin(TCPClient * carbonClient, const char *carbonServer) {
     // Resolve DNS hostname
     // Adapted from: https://github.com/spark/core-firmware/blob/master/src/spark_wiring_tcpclient.cpp#L47-L63
     uint32_t ip_addr = 0;
-    if(gethostbyname((char*)carbonServer, strlen(carbonServer), &ip_addr) > 0) {
-        IPAddress remote_addr(BYTE_N(ip_addr, 3), BYTE_N(ip_addr, 2), BYTE_N(ip_addr, 1), BYTE_N(ip_addr, 0));
-        _carbonServer = remote_addr;
-
-        return true;
-    } else
-        return false;
+    _carbonServer = WiFi.resolve((char*)carbonServer);
+    return true;
+    // if(gethostbyname((char*)carbonServer, strlen(carbonServer), &ip_addr) > 0) {
+    //     IPAddress remote_addr(BYTE_N(ip_addr, 3), BYTE_N(ip_addr, 2), BYTE_N(ip_addr, 1), BYTE_N(ip_addr, 0));
+    //     _carbonServer = remote_addr;
+    //
+    //     return true;
+    // } else
+    //     return false;
 }
 
 
